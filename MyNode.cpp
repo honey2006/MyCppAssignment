@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-
 #include "MyNode.h"
 
 void MyNode::nodeSwap(MyNode* nodeA, MyNode* nodeB)
@@ -17,16 +16,67 @@ void MyNode::nodeSwap(MyNode* nodeA, MyNode* nodeB)
     nodeB->next = temp->next;
 }
 
-void MyNode::createList()
+int MyNode::getEndData()
 {
-    cout<<"Create List"<<endl;
-    data = NULL;
-    next = NULL;
+    MyNode* pThis = this;
+
+    while (pThis->next != NULL)
+    {
+        pThis = pThis->next;
+    }
+    return pThis->data;
+}
+int MyNode::getSize()
+{
+    int count = 0;
+    MyNode* pThis = this;
+    while (pThis != NULL)
+    {
+        count++;
+        pThis = pThis->next;
+    }
+    return count;
+}
+MyNode* MyNode::createList(int number)
+{
+    MyNode* pStart = new MyNode();
+    MyNode* pHead = pStart;
+    MyNode* tmp = new MyNode();;
+    for (int i = 0; i < number; i++)
+    {
+        int value;
+        cout<<"Enter Value for node "<<i+1<<endl;
+        cin>>value;
+
+        pStart->data = value;
+        pStart->next = tmp;
+
+        pStart = pStart->next;
+
+        tmp = new MyNode();
+    }
+
+    delete tmp;    pStart = NULL;
+
+
+    //pHead->deleteEnd();
+
+    // change pnultimate next to NULL
+    MyNode* pThis = pHead;
+
+    while ((pThis->next)->next != NULL)
+    {
+        pThis = pThis->next;
+    }
+
+    pThis->next = NULL;
+
+
+    return (pHead);
 }
 
 void MyNode::display()
 {
-    cout<<"Display List"<<endl;
     MyNode* pThis = this;
 
     while (pThis != NULL)
@@ -77,7 +127,7 @@ void MyNode::insertAtPosition(int value, int position)
     {
         if (pThis == NULL)
         {
-            insertEnd(value);
+            cout<<"Position not found"<<endl;
             return;
         }
         pThis = pThis->next;
@@ -98,12 +148,10 @@ void MyNode::deleteBeginning()
     // swap first and second, bypass second
 
     nodeSwap(this, next);
-    this->next = next->next;
 }
 
 void MyNode::deleteEnd()
 {
-    cout<<"Delete End"<<endl;
     // change pnultimate next to NULL
     MyNode* pThis = this;
 
@@ -167,38 +215,21 @@ void MyNode::countNodes()
     cout<<"No. of nodes: "<<count<<endl;
 }
 
-void MyNode::reverseList()
+MyNode* MyNode::reverseList()
 {
-    cout<<"Reverse list"<<endl;
-    MyNode* pStart = this;
-    MyNode* pThis = pStart;
-    MyNode* pEnd;
+    MyNode* reversedList = new MyNode();
+    cout<<"Reverse List"<<endl;
 
-    while (pThis->next != NULL)
-    {
-        pThis = pThis->next;
-    }
-    pEnd = pThis;
-
-    // move and circle back => reverse the pointing
-    pThis = pStart;
-
-    MyNode* doubleNext;
-    MyNode* oldNode;
+    MyNode* pThis = this;
 
     while (pThis != NULL)
     {
-        doubleNext = (pThis->next)->next;
-        oldNode = pThis;
-
+        reversedList->insertBeginning(pThis->data);
         pThis = pThis->next;
-
-        pThis->next = oldNode;
-
-        pThis = doubleNext;
     }
 
-    nodeSwap(pStart, pEnd);
+    reversedList->deleteEnd();
+    return reversedList;
 }
 
 void MyNode::findMinMax()
