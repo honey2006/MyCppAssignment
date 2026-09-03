@@ -5,4 +5,7 @@ I used ai to do a quick research about the concepts that could be used "I used a
 ## Link
 Here is the link to the notion page, the notion page contains some additional information.
 
-(https://app.notion.com/p/List-Management-Solution-3ce0fca1afc680648c22cabeca68f64b)[Notion Page]
+[Notion Page](https://app.notion.com/p/List-Management-Solution-3ce0fca1afc680648c22cabeca68f64b)
+
+Here is some cat videos:
+![https://youtu.be/1YWHpvh9K-o?si=1iPZXtv0UhyIrpyK]
