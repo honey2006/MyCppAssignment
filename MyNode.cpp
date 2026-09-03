@@ -39,6 +39,16 @@ int MyNode::getSize()
 }
 MyNode* MyNode::createList(int number)
 {
+    if (number < 0)
+    {
+        cout<<"Enter Valid size"<<endl;
+        return NULL;
+    }
+    if (number == 0)
+    {
+        return NULL;
+    }
+
     MyNode* pStart = new MyNode();
     MyNode* pHead = pStart;
     MyNode* tmp = new MyNode();;
@@ -88,7 +98,6 @@ void MyNode::display()
 
 void MyNode::insertBeginning(int value)
 {
-    cout<<"Insert Beginning"<<endl;
     MyNode* newNode = new MyNode();
     newNode->data = value;
     newNode->next = NULL;
@@ -142,16 +151,37 @@ void MyNode::insertAtPosition(int value, int position)
     pThis->next = newNode;
 }
 
-void MyNode::deleteBeginning()
+MyNode* MyNode::deleteBeginning()
 {
+    if (getSize() < 1)
+    {
+        cout<<"Not enough elements"<<endl;
+        return NULL;
+    }
+    if (getSize() == 1)
+    {
+        return NULL;
+    }
     cout<<"Delete Beginning"<<endl;
     // swap first and second, bypass second
 
     nodeSwap(this, next);
+
+    return this;
 }
 
 void MyNode::deleteEnd()
 {
+    if (getSize() <= 1)
+    {
+        data = 0;
+        return;
+    }
+    if (getSize() == 2)
+    {
+        this->next = NULL;
+        return;
+    }
     // change pnultimate next to NULL
     MyNode* pThis = this;
 
@@ -217,6 +247,8 @@ void MyNode::countNodes()
 
 MyNode* MyNode::reverseList()
 {
+    if (getSize() <= 1) return this;
+
     MyNode* reversedList = new MyNode();
     cout<<"Reverse List"<<endl;
 
@@ -229,12 +261,30 @@ MyNode* MyNode::reverseList()
     }
 
     reversedList->deleteEnd();
+
+    pThis = this;
+    while (pThis != NULL)
+    {
+        MyNode* tmp = pThis->next;
+        delete pThis;
+        pThis = tmp;
+    }
+
     return reversedList;
 }
 
 void MyNode::findMinMax()
 {
     cout<<"Find min max"<<endl;
+    if (getSize() < 1)
+    {
+        cout<<"Not enough elements"<<endl;
+        return;
+    }
+    if (getSize() == 1)
+    {
+        cout<<"Single element list"<<endl;
+    }
     int min=data, max=data;
     MyNode* pThis = this;
 

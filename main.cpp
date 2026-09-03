@@ -8,6 +8,7 @@ class Runner
     static void run()
     {
         MyNode* head = new MyNode();
+        head = NULL;
 
         int input = -1, value=-1, position=-1;
         cout<<"===== LIST MENU =====\n1. Create List\n2. Display List\n3. Insert at Beginning\n4. Insert at End\n5. Insert at Position\n6. Delete from Beginning\n7. Delete from End\n8. Delete from Position\n9. Search\n10. Count Nodes\n11. Reverse List\n12. Find Minimum and Maximum\n13. Update Node\n0. Exit\n-1. List Menu"<<endl;
@@ -39,6 +40,7 @@ class Runner
                 case 3:
                 cout<<"Enter Value: ";
                 cin>>value;
+                cout<<"Insert Beginning"<<endl;
                 head->insertBeginning(value);
                 break;
 
@@ -55,7 +57,7 @@ class Runner
                 break;
 
                 case 6:
-                head->deleteBeginning();
+                head = head->deleteBeginning();
                 break;
 
                 case 7:
@@ -95,7 +97,7 @@ class Runner
                 break;
 
                 default:
-                cout<<"Enter valid option";
+                cout<<"Enter valid option"<<endl;
                 break;
 
             }

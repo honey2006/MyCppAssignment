@@ -1,8 +1,10 @@
 class MyNode
 {
-public:
+private:
     int data = NULL;
     MyNode* next= NULL;
+
+public:
 
     void nodeSwap(MyNode* nodeA, MyNode* nodeB);
     int getEndData();
@@ -13,7 +15,7 @@ public:
     void insertBeginning(int value);
     void insertEnd(int value);
     void insertAtPosition(int value, int position);
-    void deleteBeginning();
+    MyNode* deleteBeginning();
     void deleteEnd();
     void deleteAtPosition(int position);
     void search(int value);
